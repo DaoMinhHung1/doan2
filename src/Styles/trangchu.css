@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #ffa940;
+}
+/* Header */
+.header {
+  display: flex;
+  height: 80px;
+  justify-content: space-around;
+  border-radius: 0 0 50% 50%; /* Góc cong lên */
+  overflow: hidden;
+  background-color: #ed7200;
+}
+
+.custom-navbar {
+  background-color: #ed7200; /* Màu nền đậm */
+  color: #fff; /* Màu chữ sáng */
+  width: 300px;
+}
+
+.custom-navbar .ant-menu-item-selected {
+  background-color: white; /* Màu nền khi được chọn */
+}
+
+.hotline {
+  color: #fff;
+}
+
+/* Header */
+
+/* Body */
+.body {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: -5px;
+  background-color: #ffc53d;
+  border-radius: 20px;
+}
+.imglogoDS {
+  height: 100px;
+}
+.namelogo {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+  color: #fff;
+}
+.alllogo {
+  display: flex;
+  margin-top: 20px;
+}
+.khicau1namtren {
+  height: 150px;
+  margin-top: 50px;
+}
+.khicau2namtren {
+  height: 100px;
+  margin-left: -100px;
+}
+.nhom4bannho {
+  height: 270px;
+  margin-left: -300px;
+  margin-top: -40px;
+}
+
+/* Card */
+.cardbentrai {
+  margin-top: -60px;
+  margin-left: -200px;
+  background-color: #fff6d4;
+  border-radius: 20px;
+  height: 420px;
+}
+.cardbenphai {
+  margin-top: -60px;
+  background-color: #fff6d4;
+  border-radius: 20px;
+  margin-left: -40px;
+  height: 420px;
+}
+.vector {
+  height: 420px;
+  width: 100px;
+  margin-top: -60px;
+  margin-left: -30px;
+}
+.vecuaban {
+  height: 50px;
+  width: 180px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 40px 40px;
+  margin-top: -30px;
+  margin-left: 60px;
+}
+
+/* Logo lẻ nhóm bạn */
+.nhomban1 {
+  height: 380px;
+  margin-top: -220px;
+  margin-left: -180px;
+}
+.phanbentraicard {
+  margin-left: 30px;
+}
+.khicaubenphai {
+  height: 253px;
+  margin-top: -50px;
+  margin-left: 45px;
+}
+.ngoisao {
+  height: 20px;
+}
+.titlecard {
+  margin: 50px;
+  margin-top: 10px;
+}
+.fontcard {
+  font-size: 20px;
+  margin-top: 5px;
+}
+.input {
+  height: 40px;
+  width: 308px;
+  border-radius: 16px;
+  margin-top: 10px;
+}
+.inputle {
+  height: 40px;
+  border-radius: 16px;
+  margin-top: 10px;
+}
+.button {
+  height: 40px;
+  width: 250px;
+  margin-top: 20px;
+  margin-left: 30px;
+  background-color: red;
+  color: #fff;
+}
+.khicau5 {
+  margin-left: 500px;
+  margin-top: -70px;
+  height: 100px;
+}
+
+/* Body */

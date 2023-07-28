@@ -1,0 +1,35 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.home{
+    height: 420px;
+}
+.co1{
+    height: 180px;
+    margin-left: -40px;
+}
+.co2{
+    height: 220px;
+}
+.titlesukien{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+    color: #fff;
+    margin-top: 60px;
+}
+.btnxemchitiet{
+    height: 30px;
+    width: 200px;
+    background-color: red;
+    color: #fff;
+}
+.card{
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-top: -30px;
+}

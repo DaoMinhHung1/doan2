@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.titlethanhtoan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+  color: #fff;
+  margin-top: 40px;
+}
+.thanhtoancardleft {
+  margin-top: 20px;
+  margin-left: 150px;
+  background-color: #fff6d4;
+  border-radius: 20px;
+  height: 420px;
+}
+.thanhtoancardright {
+  margin-top: 20px;
+  background-color: #fff6d4;
+  border-radius: 20px;
+  margin-left: -40px;
+  height: 420px;
+}
+.thongtincuarban {
+  height: 50px;
+  width: 250px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 0 40px 40px;
+  margin-top: -30px;
+  margin-left: 30px;
+}
+.logocontocvang {
+  height: 380px;
+  margin-top: -300px;
+  margin-left: -160px;
+}
+
+.input-with-label {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+.label {
+  margin-left: 5px;
+}
+.inputhanhtoan {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.vectorthanhtoan {
+  height: 430px;
+  width: 100px;
+  margin-top: 15px;
+  margin-left: -30px;
+}

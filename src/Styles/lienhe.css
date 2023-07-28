@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.home {
+    height: 420px;
+}
+.titlelienhe{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 50px;
+    color: #fff;
+    margin-top: 40px;
+}
+.card{
+    margin-top: 20px;
+    border-radius: 20px;
+    background-color: #fff6d4;
+    margin-left: 0px;
+    position: relative;
+}
+.imgtocdo{
+    position: absolute;
+    height: 400px;
+    margin-top: -180px;
+    margin-left: -870px;
+}
+.btnlienhe{
+    height: 40px;
+    width: 300px;
+    background-color: red;
+    color: #fff;
+    margin-top: 20px;
+    margin-left: 130px;
+}
+.cardnho{
+    display: flex;
+}
+.noidungtroncardnho{
+    margin-left: 10px;
+}
