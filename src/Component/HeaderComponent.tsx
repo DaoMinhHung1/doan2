@@ -7,19 +7,13 @@ import { PhoneOutlined } from "@ant-design/icons";
 const HeaderComponent: React.FC = () => {
   return (
     <Header className="header">
-      <img src="img/Little&LittleLogo.png" alt="" />
-
+      <img src="/img/Little&LittleLogo.png" alt="" />
       <div>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={["1"]}
-          className="custom-navbar"
-        >
-          <Menu.Item key="">Trang chủ</Menu.Item>
-          <Menu.Item key="">Sự kiện</Menu.Item>
-          <Menu.Item key="">Giới thiệu</Menu.Item>
-        </Menu>
+      <Menu defaultSelectedKeys={["1"]}  className="custom-navbar">
+        <a href="/trangchu"><Menu.Item key="1">Trang chủ</Menu.Item></a>
+        <a href="/sukien"><Menu.Item key="2">Sự kiện</Menu.Item></a>
+        <a href="/lienhe"><Menu.Item key="3">Liên hệ</Menu.Item></a>
+      </Menu>
       </div>
 
       <div className="hotline">

@@ -1,14 +1,59 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 .titlethanhtoanthanhcong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
+  color: #fff;
+  margin-top: 40px;
+}
+.boxQR {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.layoutQR{
     display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 50px;
-    color: #fff;
+}
+.layoutcard{
+    margin-left: 150px;
+    height: 470px;
+}
+.QR{
+    display: flex;
+    justify-content: space-evenly;
+}
+.cardQR{
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    margin-left: 0px;
+    position: relative;
+    height: 400px;
+    width: 200px;
+}
+.btnimgtrai{
+    margin: 20px;
+    margin-top: 200px;
+}
+.btnimgphai{
+    margin: 20px;
+    margin-top: 200px;
+    margin-left: 150px;
+}
+.button{
+    height: 40px;
+    width: 150px;
+}
+.bannamtocnau{
+    position: absolute;
     margin-top: 40px;
-  }
+    margin-left: -200px;
+    height: 450px;
+}

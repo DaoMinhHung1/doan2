@@ -1,13 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import HeaderComponent from "../Component/HeaderComponent";
 import { Button, Card, Col, Layout, Row } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../redux/store";
 import "../Styles/sukien.css";
+import { fetchEvents } from "../redux/sukienSlice";
+import { Link, useParams } from "react-router-dom";
 
 const Sukien: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+  const events = useSelector((state: RootState) => state.sukien.events);
+  //
+
+  // Load dữ liệu xuống từ Firestore
+  useEffect(() => {
+    // Use dispatch to call the fetchEvents async thunk
+    dispatch(fetchEvents());
+  }, [dispatch]);
+
   return (
     <>
       <HeaderComponent />
-      <Layout style={{height: "650px"}} className="body">
+      <Layout style={{ height: "730px" }} className="body">
         <Row>
           <Col span={6}>
             <img className="co1" src="img/cotrai.png" alt="" />
@@ -19,51 +33,27 @@ const Sukien: React.FC = () => {
             <img className="co2" src="img/cophai.png" alt="" />
           </Col>
         </Row>
-        <Row className="card">
-          <Col span={6}>
-            <Card
-              cover={<img alt="" src="img/damsen1.png" />}
-              style={{ width: 300 }}
-            >
-              <h1>Sự kiện 1</h1>
-              <p>Đàm Sen Park</p>
-              <p>25.000VND</p>
-              <Button className="btnxemchitiet">Xem chi tiết</Button>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              cover={<img alt="" src="img/damsen1.png" />}
-              style={{ width: 300 }}
-            >
-              <h1>Sự kiện 1</h1>
-              <p>Đàm Sen Park</p>
-              <p>25.000VND</p>
-              <Button className="btnxemchitiet">Xem chi tiết</Button>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              cover={<img alt="" src="img/damsen1.png" />}
-              style={{ width: 300 }}
-            >
-              <h1>Sự kiện 1</h1>
-              <p>Đàm Sen Park</p>
-              <p>25.000VND</p>
-              <Button className="btnxemchitiet">Xem chi tiết</Button>
-            </Card>
-          </Col>
-          <Col span={6}>
-            <Card
-              cover={<img alt="" src="img/damsen1.png" />}
-              style={{ width: 300 }}
-            >
-              <h1>Sự kiện 1</h1>
-              <p>Đàm Sen Park</p>
-              <p>25.000VND</p>
-              <Button className="btnxemchitiet">Xem chi tiết</Button>
-            </Card>
-          </Col>
+        <Row className="">
+          <Col span={4}>{/* <img src="img/quatrai.png" alt="" /> */}</Col>
+          {events.map((event) => (
+            <Col span={4}>
+              <Card
+                className="cardsukien"
+                cover={<img alt="" src="img/ds1.png" />}
+              >
+                <h1>{event.tenSK}</h1>
+                <p>{event.tenDiaDiem}</p>
+                <span>{event.ngayBatDau}</span> <span>--</span>{" "}
+                <span>{event.ngayKetThuc}</span>
+                <p>{event.giaVe} VND</p>
+                <Link to={`/chitietsukien/${encodeURIComponent(event.tenSK)}`}>
+                  <Button className="btnxemchitiet">Xem chi tiết</Button>
+                </Link>
+              </Card>
+            </Col>
+          ))}
+
+          <Col span={4}>{/* <img src="img/quaphai.png" alt="" /> */}</Col>
         </Row>
       </Layout>
     </>

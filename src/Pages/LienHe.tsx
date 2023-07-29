@@ -1,13 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderComponent from "../Component/HeaderComponent";
 import { Card, Col, Input, Layout, Row } from "antd";
 import "../Styles/lienhe.css";
 import TextArea from "antd/es/input/TextArea";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../redux/store";
+import { Contact, addContact } from "../redux/lienheSlice";
+
 const LienHe: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const [formData, setFormData] = useState<Contact>({
+    hoTen: "",
+    email: "",
+    soDienThoai: "",
+    diaChi: "",
+    loiNhan: "",
+  });
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleTextAreaChange = (
+    event: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+  };
+
+  const handleSaveData = async () => {
+    try {
+      const { hoTen, soDienThoai, email, diaChi, loiNhan } = formData;
+
+      // Data object to be saved in Firestore
+      const data = {
+        hoTen,
+        soDienThoai,
+        email,
+        diaChi,
+        loiNhan,
+      };
+      console.log("Data to be saved:", data);
+
+      // Dispatch the `addTicket` async thunk
+      await dispatch(addContact(data));
+      console.log("Data saved successfully!");
+    } catch (error) {
+      console.error("Error saving data:", error);
+    }
+  };
+
   return (
     <>
       <HeaderComponent />
-      <Layout style={{ height: "650px" }} className="body">
+      <Layout style={{ height: "730px" }} className="body">
         <Row>
           <Col span={24}>
             <h1 className="titlelienhe">Liên Hệ</h1>
@@ -23,6 +69,8 @@ const LienHe: React.FC = () => {
               </p>
               <div style={{ display: "flex", marginTop: "10px" }}>
                 <Input
+                  name="hoTen"
+                  onChange={handleInputChange}
                   style={{
                     height: "40px",
                     width: "250px",
@@ -31,6 +79,8 @@ const LienHe: React.FC = () => {
                   placeholder="Tên"
                 />
                 <Input
+                  onChange={handleInputChange}
+                  name="email"
                   style={{
                     height: "40px",
                     width: "400px",
@@ -42,6 +92,8 @@ const LienHe: React.FC = () => {
               </div>
               <div style={{ display: "flex", marginTop: "10px" }}>
                 <Input
+                onChange={handleInputChange}
+                  name="soDienThoai"
                   style={{
                     height: "40px",
                     width: "250px",
@@ -50,6 +102,8 @@ const LienHe: React.FC = () => {
                   placeholder="Số điện thoại"
                 />
                 <Input
+                  name="diaChi"
+                  onChange={handleInputChange}
                   style={{
                     height: "40px",
                     width: "400px",
@@ -60,13 +114,15 @@ const LienHe: React.FC = () => {
                 />
               </div>
               <TextArea
+                name="loiNhan"
+                onChange={handleTextAreaChange}
                 style={{ borderRadius: "16px", marginTop: "10px" }}
                 placeholder="lời nhắn"
                 rows={5}
               />
 
               <img className="imgtocdo" src="img/bannamtocdo.png" alt="" />
-              <button className="btnlienhe">Gửi liên hệ</button>
+              <button onClick={handleSaveData} className="btnlienhe">Gửi liên hệ</button>
             </Card>
           </Col>
           <Col span={8}>

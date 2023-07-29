@@ -8,7 +8,7 @@ const Thanhtoan: React.FC = () => {
   return (
     <>
       <HeaderComponent />
-      <Layout style={{ height: "650px" }} className="body">
+      <Layout style={{height: "730px"}} className="body">
         <Row>
           <Col span={24}>
             <h1 className="titlethanhtoan">Thanh toán</h1>
