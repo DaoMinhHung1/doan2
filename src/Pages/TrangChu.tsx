@@ -1,18 +1,20 @@
 import { Layout, Row, Col, Card, Input, Button, Select } from "antd";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../Styles/trangchu.css";
 import HeaderComponent from "../Component/HeaderComponent";
 import DatePickerComponent from "../Component/DatePickerComponent ";
-import { Dayjs } from "dayjs";
-import { useDispatch } from "react-redux";
+import dayjs, { Dayjs } from "dayjs";
+import { useDispatch, useSelector } from "react-redux";
 import { Ticket, addTicket } from "../redux/datveSlice";
-import { AppDispatch  } from "../redux/store";
+import { AppDispatch, RootState } from "../redux/store";
+import { useNavigate } from "react-router-dom";
+import { fetchEvents } from "../redux/sukienSlice";
 const { Content } = Layout;
 const { Option } = Select;
 
-
 const TrangChu: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch >();
+  const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
   const [selectedDate, setSelectedDate] = useState<Dayjs | null>(null);
   const [formData, setFormData] = useState<Ticket>({
     hoTen: "",
@@ -24,11 +26,17 @@ const TrangChu: React.FC = () => {
   });
 
   const formatDate = (date: Dayjs | null) => {
-    if (date) {
-      return date.format("DD-MM-YYYY");
-    }
-    return "";
+    return date ? dayjs(date).format("DD/MM/YYYY") : "";
   };
+
+  const events = useSelector((state: RootState) => state.sukien.events);
+  //
+
+  // Load dữ liệu xuống từ Firestore
+  useEffect(() => {
+    // Use dispatch to call the fetchEvents async thunk
+    dispatch(fetchEvents());
+  }, [dispatch]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -43,10 +51,10 @@ const TrangChu: React.FC = () => {
   const handleSaveData = async () => {
     try {
       const { hoTen, soDienThoai, email, goiVe, soLuongVe } = formData;
-  
+
       // Convert ngaySuDung to a string before saving
       const ngaySuDungString = selectedDate ? selectedDate.format() : null;
-  
+
       // Data object to be saved in Firestore
       const data = {
         hoTen,
@@ -54,20 +62,25 @@ const TrangChu: React.FC = () => {
         email,
         goiVe,
         soLuongVe,
-        ngaySuDung: ngaySuDungString as Dayjs | null, // Use type assertion here
+        ngaySuDung: ngaySuDungString as Dayjs | null,
       };
       console.log("Data to be saved:", data);
-  
+
       // Dispatch the `addTicket` async thunk
       await dispatch(addTicket(data));
+      const selectedEvent = events.find((event) => event.tenSK === formData.goiVe);
+      if (selectedEvent) {
+        const giaVe = selectedEvent.giaVe;
+        navigate(`/thanhtoan?giaVe=${giaVe}`);
+      } else {
+        navigate("/thanhtoan");
+      }
       console.log("Data saved successfully!");
     } catch (error) {
       console.error("Error saving data:", error);
     }
-    
   };
   console.log(handleSaveData);
-  
 
   return (
     <>
@@ -161,10 +174,13 @@ const TrangChu: React.FC = () => {
                     }
                     className="input"
                     style={{ borderRadius: "100%" }}
-                    placeholder="Gói gia đình"
+                    placeholder="Chọn gói muốn sử dụng"
                   >
-                    <Option value="Gói cá nhân">Gói cá nhân</Option>
-                    <Option value="Gói gia đình">Gói gia đình</Option>
+                    {events.map((event) => (
+                      <Option key={event.id} value={event.tenSK}>
+                        {event.tenSK}
+                      </Option>
+                    ))}
                   </Select>
 
                   <div style={{ display: "flex", marginTop: "10px" }}>
@@ -182,11 +198,7 @@ const TrangChu: React.FC = () => {
 
                     <Input
                       name="ngaySuDung"
-                      value={
-                        formData.ngaySuDung
-                          ? formatDate(formData.ngaySuDung)
-                          : ""
-                      }
+                      value={formatDate(formData.ngaySuDung)}
                       addonAfter={
                         <DatePickerComponent
                           onChange={handleDatePickerChange}

@@ -12,13 +12,13 @@ export interface Ticket {
 }
 
 export interface TicketState {
-  data: Ticket | null;
+  ticket: Ticket[];
   isLoading: boolean;
   error: string | null;
 }
 
 const initialState: TicketState = {
-  data: null,
+  ticket: [],
   isLoading: false,
   error: null,
 };
@@ -32,12 +32,44 @@ export const addTicket = createAsyncThunk(
       const docRef = await db.collection("datve").add(ticketData);
 
       // Return the data with the generated ID to save in the state
+
       return { ...ticketData, id: docRef.id };
-      
     } catch (error) {
       // Handle errors and reject with the error message
       console.error("Error adding ticket data:", error);
       return rejectWithValue("Failed to add ticket data");
+    }
+  }
+);
+
+// Async thunk to load ticket data from Firebase
+export const fetchTicket = createAsyncThunk(
+  "ticket/fetchTicket",
+  async (_, { rejectWithValue }) => {
+    try {
+      // Truy vấn Firestore để lấy dữ liệu vé
+      const querySnapshot = await db.collection("datve").get();
+      const tickets: Ticket[] = [];
+
+      // Lặp qua các tài liệu và chuyển dữ liệu về đúng cấu trúc Ticket
+      querySnapshot.forEach((doc) => {
+        const ticket: Ticket = {
+          hoTen: doc.data().hoTen,
+          soDienThoai: doc.data().soDienThoai,
+          email: doc.data().email,
+          goiVe: doc.data().goiVe,
+          soLuongVe: doc.data().soLuongVe,
+          ngaySuDung: doc.data().ngaySuDung,
+        };
+        tickets.push(ticket);
+      });
+
+      // Trả về danh sách vé
+      return tickets;
+    } catch (error) {
+      // Xử lý lỗi và reject với thông báo lỗi
+      console.error("Error fetching ticket data:", error);
+      return rejectWithValue("Failed to fetch ticket data");
     }
   }
 );
@@ -55,10 +87,22 @@ const ticketSlice = createSlice({
         state.error = null;
       })
       .addCase(addTicket.fulfilled, (state, action) => {
-        state.data = action.payload;
+        state.ticket = [...state.ticket, action.payload]; // Add the new ticket to the data array
         state.isLoading = false;
       })
       .addCase(addTicket.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      .addCase(fetchTicket.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(fetchTicket.fulfilled, (state, action) => {
+        state.ticket = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchTicket.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });

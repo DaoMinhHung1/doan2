@@ -1,14 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import HeaderComponent from "../Component/HeaderComponent";
 import Layout from "antd/es/layout/layout";
-import { Button, Card, Col, Input, Form, Row } from "antd";
+import { Button, Card, Col, Input, Row } from "antd";
 import "../Styles/thanhtoan.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { Ticket, } from "../redux/datveSlice";
+import { useLocation } from "react-router-dom";
+import dayjs, { Dayjs } from "dayjs";
 
 const Thanhtoan: React.FC = () => {
+  const ticketData = useSelector<RootState, Ticket[]>(
+    (state) => state.ticket.ticket
+  );
+  const ticket = ticketData[0];
+  console.log(ticketData);
+
+  const formatDate = (date: Dayjs | null) => {
+    return date ? dayjs(date).format("DD/MM/YYYY") : "";
+  };
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const giaVe = searchParams.get("giaVe");
+  const [giaVeState, setGiaVeState] = useState<string | null>(giaVe);
+
+  const giaVeNumber = parseInt(giaVeState ?? "0", 10);
+  const soLuongVeNumber = parseInt(ticket?.soLuongVe ?? "0", 10);
+  const tongTien = giaVeNumber * soLuongVeNumber
+  const tongTienString = tongTien.toFixed(3);
   return (
     <>
       <HeaderComponent />
-      <Layout style={{height: "730px"}} className="body">
+      <Layout style={{ height: "730px" }} className="body">
         <Row>
           <Col span={24}>
             <h1 className="titlethanhtoan">Thanh toán</h1>
@@ -23,6 +47,7 @@ const Thanhtoan: React.FC = () => {
                     <strong>Số tiền thanh toán</strong>{" "}
                   </label>
                   <Input
+                    value={tongTienString}
                     style={{ width: "200px", marginRight: "10px" }}
                     className="input inputhanhtoan"
                     placeholder="Nhập nội dung ở đây"
@@ -34,6 +59,7 @@ const Thanhtoan: React.FC = () => {
                     <strong>Số lượng vé</strong>{" "}
                   </label>
                   <Input
+                    value={ticket?.soLuongVe}
                     style={{ width: "100px", marginRight: "10px" }}
                     className="input inputhanhtoan"
                     placeholder="Nhập nội dung ở đây"
@@ -45,6 +71,7 @@ const Thanhtoan: React.FC = () => {
                     <strong>Ngày sử dụng</strong>{" "}
                   </label>
                   <Input
+                    value={formatDate(ticket?.ngaySuDung)}
                     style={{ width: "200px" }}
                     className="input"
                     placeholder="Nhập nội dung ở đây"
@@ -57,6 +84,7 @@ const Thanhtoan: React.FC = () => {
                   <strong>Thông tin liên hệ</strong>{" "}
                 </label>
                 <Input
+                  value={ticket?.hoTen}
                   className="input inputhanhtoan"
                   placeholder="Nhập nội dung ở đây"
                 />
@@ -67,6 +95,7 @@ const Thanhtoan: React.FC = () => {
                   <strong>Điện thoại</strong>{" "}
                 </label>
                 <Input
+                  value={ticket?.soDienThoai}
                   className="input inputhanhtoan"
                   placeholder="Nhập nội dung ở đây"
                 />
@@ -77,6 +106,7 @@ const Thanhtoan: React.FC = () => {
                   <strong>Email</strong>{" "}
                 </label>
                 <Input
+                  value={ticket?.email}
                   className="input inputhanhtoan"
                   placeholder="Nhập nội dung ở đây"
                 />
@@ -140,7 +170,7 @@ const Thanhtoan: React.FC = () => {
                   />
                 </div>
               </div>
-              <Button className="button">Thanh toán</Button>
+              <Button className="buttonthanhtoan">Thanh toán</Button>
             </Card>
           </Col>
         </Row>

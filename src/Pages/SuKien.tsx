@@ -3,9 +3,9 @@ import HeaderComponent from "../Component/HeaderComponent";
 import { Button, Card, Col, Layout, Row } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../redux/store";
-import "../Styles/sukien.css";
 import { fetchEvents } from "../redux/sukienSlice";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import "../Styles/sukien.css";
 
 const Sukien: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();

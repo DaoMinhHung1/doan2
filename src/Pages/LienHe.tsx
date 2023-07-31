@@ -92,7 +92,7 @@ const LienHe: React.FC = () => {
               </div>
               <div style={{ display: "flex", marginTop: "10px" }}>
                 <Input
-                onChange={handleInputChange}
+                  onChange={handleInputChange}
                   name="soDienThoai"
                   style={{
                     height: "40px",
@@ -122,7 +122,9 @@ const LienHe: React.FC = () => {
               />
 
               <img className="imgtocdo" src="img/bannamtocdo.png" alt="" />
-              <button onClick={handleSaveData} className="btnlienhe">Gửi liên hệ</button>
+              <button onClick={handleSaveData} className="btnlienhe">
+                Gửi liên hệ
+              </button>
             </Card>
           </Col>
           <Col span={8}>

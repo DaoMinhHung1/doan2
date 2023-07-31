@@ -1,16 +1,16 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { db } from '../Firebase/firebase';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { db } from "../Firebase/firebase";
 
 // Interface cho đối tượng sự kiện
 interface Event {
-  id:string;
+  id: string;
   tenSK: string;
   tenDiaDiem: string;
   ngayBatDau: string;
   ngayKetThuc: string;
   giaVe: string;
-  imgAnhMot:string;
-  imgAnhHai:string;
+  imgAnhMot: string;
+  imgAnhHai: string;
 }
 
 // Interface cho state của slice
@@ -27,39 +27,42 @@ const initialState: SukienState = {
 };
 
 // Tạo async thunk để load dữ liệu sự kiện từ Firestore
-export const fetchEvents = createAsyncThunk('sukien/fetchEvents', async (_, { rejectWithValue }) => {
-  try {
-    // Truy vấn Firestore để lấy dữ liệu sự kiện
-    const querySnapshot = await db.collection('sukien').get();
-    const events: Event[] = [];
+export const fetchEvents = createAsyncThunk(
+  "sukien/fetchEvents",
+  async (_, { rejectWithValue }) => {
+    try {
+      // Truy vấn Firestore để lấy dữ liệu sự kiện
+      const querySnapshot = await db.collection("sukien").get();
+      const events: Event[] = [];
 
-    // Lặp qua các tài liệu và chuyển dữ liệu về đúng cấu trúc Event
-    querySnapshot.forEach((doc) => {
-      const event: Event = {
-        id:doc.data().id,
-        tenSK: doc.data().tenSK,
-        tenDiaDiem: doc.data().tenDiaDiem,
-        ngayBatDau: doc.data().ngayBatDau,
-        ngayKetThuc: doc.data().ngayKetThuc,
-        giaVe: doc.data().giaVe,
-        imgAnhMot:doc.data().imgAnhMot,
-        imgAnhHai:doc.data().imgAnhHai,
-      };
-      events.push(event);
-    });
+      // Lặp qua các tài liệu và chuyển dữ liệu về đúng cấu trúc Event
+      querySnapshot.forEach((doc) => {
+        const event: Event = {
+          id: doc.data().id,
+          tenSK: doc.data().tenSK,
+          tenDiaDiem: doc.data().tenDiaDiem,
+          ngayBatDau: doc.data().ngayBatDau,
+          ngayKetThuc: doc.data().ngayKetThuc,
+          giaVe: doc.data().giaVe,
+          imgAnhMot: doc.data().imgAnhMot,
+          imgAnhHai: doc.data().imgAnhHai,
+        };
+        events.push(event);
+      });
 
-    events.sort((a, b) => a.id.localeCompare(b.id));
+      events.sort((a, b) => a.id.localeCompare(b.id));
 
-    // Trả về danh sách sự kiện
-    return events;
-  } catch (error) {
-    // Xử lý lỗi và reject với thông báo lỗi
-    return rejectWithValue('Failed to fetch events');
+      // Trả về danh sách sự kiện
+      return events;
+    } catch (error) {
+      // Xử lý lỗi và reject với thông báo lỗi
+      return rejectWithValue("Failed to fetch events");
+    }
   }
-});
+);
 
 const sukienSlice = createSlice({
-  name: 'sukien',
+  name: "sukien",
   initialState,
   reducers: {
     // Các reducers khác nếu cần thiết
