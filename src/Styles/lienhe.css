@@ -10,23 +10,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: "Times New Roman", Times, serif;
+    font-family: 'iCiel Koni';
     font-size: 50px;
     color: #fff;
     margin-top: 40px;
+    margin-bottom: 50px;
 }
 .card{
     margin-top: 20px;
     border-radius: 20px;
     background-color: #fff6d4;
     margin-left: 0px;
-    position: relative;
+    border: 4px dashed #ed7200;
 }
 .imgtocdo{
     position: absolute;
     height: 400px;
     margin-top: -180px;
-    margin-left: -870px;
+    margin-left: -930px;
 }
 .btnlienhe{
     height: 40px;
@@ -38,6 +39,7 @@
 }
 .cardnho{
     display: flex;
+    
 }
 .noidungtroncardnho{
     margin-left: 10px;

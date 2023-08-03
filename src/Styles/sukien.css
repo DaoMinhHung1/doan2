@@ -25,7 +25,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'iCiel Koni';
   font-size: 50px;
   color: #fff;
   margin-top: 60px;
@@ -37,6 +37,7 @@ body {
   color: #fff;
   margin-top: 10px;
   margin-left: -5px;
+  font-family: 'iCiel Koni';
 }
 .card {
   margin-left: 100px;
@@ -56,6 +57,7 @@ body {
   margin-top: 150px;
   border-radius: 20px;
   position: absolute;
+  border: 4px dashed #ed7200;
 }
 .textchitietsukien {
   margin-left: 20px;

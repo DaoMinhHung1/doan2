@@ -1,4 +1,4 @@
-import { Layout, Row, Col, Card, Input, Button, Select } from "antd";
+import { Layout, Row, Col, Card, Input, Button, Select, message } from "antd";
 import React, { useState, useEffect } from "react";
 import "../Styles/trangchu.css";
 import HeaderComponent from "../Component/HeaderComponent";
@@ -68,7 +68,9 @@ const TrangChu: React.FC = () => {
 
       // Dispatch the `addTicket` async thunk
       await dispatch(addTicket(data));
-      const selectedEvent = events.find((event) => event.tenSK === formData.goiVe);
+      const selectedEvent = events.find(
+        (event) => event.tenSK === formData.goiVe
+      );
       if (selectedEvent) {
         const giaVe = selectedEvent.giaVe;
         navigate(`/thanhtoan?giaVe=${giaVe}`);
@@ -76,6 +78,7 @@ const TrangChu: React.FC = () => {
         navigate("/thanhtoan");
       }
       console.log("Data saved successfully!");
+      message.success("Đặt vé thành công!");
     } catch (error) {
       console.error("Error saving data:", error);
     }

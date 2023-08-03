@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import HeaderComponent from "../Component/HeaderComponent";
-import { Card, Col, Input, Layout, Row } from "antd";
+import { Card, Col, Input, Layout, Modal, Row, message } from "antd";
 import "../Styles/lienhe.css";
 import TextArea from "antd/es/input/TextArea";
 import { useDispatch } from "react-redux";
@@ -9,6 +9,7 @@ import { Contact, addContact } from "../redux/lienheSlice";
 
 const LienHe: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [formData, setFormData] = useState<Contact>({
     hoTen: "",
     email: "",
@@ -45,9 +46,13 @@ const LienHe: React.FC = () => {
       // Dispatch the `addTicket` async thunk
       await dispatch(addContact(data));
       console.log("Data saved successfully!");
+      setIsModalVisible(true);
     } catch (error) {
       console.error("Error saving data:", error);
     }
+  };
+  const handleModalClose = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -158,6 +163,16 @@ const LienHe: React.FC = () => {
           </Col>
         </Row>
       </Layout>
+
+
+      <Modal
+        visible={isModalVisible}
+        onOk={handleModalClose}
+        onCancel={handleModalClose}
+      >
+        <p>Gửi liên hệ thành công</p>
+        <p>Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!</p>
+      </Modal>
     </>
   );
 };

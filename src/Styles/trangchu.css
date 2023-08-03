@@ -64,11 +64,14 @@ a{
 }
 .imglogoDS {
   height: 100px;
+  margin-top: 20px;
 }
 .namelogo {
-  font-family: "Times New Roman", Times, serif;
+  font-family: 'iCiel Koni';
   font-size: 50px;
   color: #fff;
+  margin-top: 20px;
+  margin-left: 10px;
 }
 .alllogo {
   display: flex;
@@ -95,6 +98,7 @@ a{
   background-color: #fff6d4;
   border-radius: 20px;
   height: 420px;
+  border: 4px dashed #ed7200;
 }
 .cardbenphai {
   margin-top: -60px;
@@ -102,6 +106,7 @@ a{
   border-radius: 20px;
   margin-left: -40px;
   height: 420px;
+  border: 4px dashed #ed7200;
 }
 .vector {
   height: 420px;
@@ -112,13 +117,16 @@ a{
 .vecuaban {
   height: 50px;
   width: 180px;
-  background-color: red;
+  background-color: #e60000;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0 0 40px 40px;
-  margin-top: -30px;
+  border-radius: 0 0 30px 30px;
+  margin-top: -40px;
   margin-left: 60px;
+  border: 2px dashed #fff;
+  font-family: 'iCiel Koni';
 }
 
 /* Logo lẻ nhóm bạn */
@@ -133,7 +141,7 @@ a{
 .khicaubenphai {
   height: 253px;
   margin-top: -50px;
-  margin-left: 45px;
+  margin-left: 70px;
 }
 .ngoisao {
   height: 20px;
@@ -164,6 +172,7 @@ a{
   margin-left: 50px;
   background-color: red;
   color: #fff;
+  font-family: 'iCiel Koni';
 }
 .khicau5 {
   margin-left: 500px;
