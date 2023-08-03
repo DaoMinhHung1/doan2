@@ -227,9 +227,6 @@ const Thanhtoan: React.FC = () => {
           onCancel={hideModal}
           title={<span style={{ display: "flex",justifyContent: "center", color: "orange"}}>Lỗi thanh toán</span>}
           footer={[
-            <Button key="ok" type="primary" onClick={hideModal}>
-              OK
-            </Button>,
           ]}
         >
           <p>Hình như đã có lỗi xảy ra khi thanh toán...

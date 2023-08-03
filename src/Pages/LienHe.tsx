@@ -163,8 +163,6 @@ const LienHe: React.FC = () => {
           </Col>
         </Row>
       </Layout>
-
-
       <Modal
         visible={isModalVisible}
         onOk={handleModalClose}

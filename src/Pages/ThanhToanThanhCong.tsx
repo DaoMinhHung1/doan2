@@ -6,10 +6,17 @@ import { AppDispatch, RootState } from "../redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTicket } from "../redux/datveSlice";
 import dayjs, { Dayjs } from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 const ThanhToanThanhCong: React.FC = () => {
-  const qrContent = "Nội dung mã QR của bạn";
 
+  const navigate = useNavigate();
+
+  const handleguimail = () => {
+    navigate('/lienhe');
+  }
+
+  const qrContent = "Nội dung mã QR của bạn";
   const dispatch: AppDispatch = useDispatch();
   const thanhtoanthanhcong = useSelector(
     (state: RootState) => state.ticket.ticket
@@ -105,7 +112,7 @@ const ThanhToanThanhCong: React.FC = () => {
             span={24}
           >
             <Button className="buttonthanhtoanthanhcong">Tải vé</Button>
-            <Button className="buttonthanhtoanthanhcong">Gửi mail</Button>
+            <Button onClick={handleguimail} className="buttonthanhtoanthanhcong">Gửi mail</Button>
           </Col>
         </Row>
       </Layout>
