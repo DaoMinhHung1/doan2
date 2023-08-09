@@ -78,11 +78,11 @@ const ThanhToanThanhCong: React.FC = () => {
             <Col className="QR" span={4}>
               <Card className="cardQR">
                 <div className="boxQR">
-                  <QRCode value={qrContent} />
+                  <QRCode  value={qrContent} />
                   <h2 className="title">ALT2002323</h2>
                   <p style={{fontSize: "20px", color: "#FFC226",  fontFamily: "iCiel Koni"}}>Vé cổng</p>
                   <p>---</p>
-                  <p> <span>Ngày sử dụng:</span>{formatDate(tt.ngaySuDung)}</p>
+                  <p>Ngày sử dụng</p> <span>{formatDate(tt.ngaySuDung)}</span>
                   <p style={{marginTop: "10px"}}><img style={{height: "30px"}} src="img/tick1.png" alt="" /></p>
                 </div>
               </Card>

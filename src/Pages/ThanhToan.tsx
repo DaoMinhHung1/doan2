@@ -223,15 +223,37 @@ const Thanhtoan: React.FC = () => {
           </Col>
         </Row>
         <Modal
+          style={{ width: "200px" }}
           visible={modalVisible}
           onCancel={hideModal}
-          title={<span style={{ display: "flex",justifyContent: "center", color: "orange"}}>Lỗi thanh toán</span>}
-          footer={[
-          ]}
+          width={350}
+          footer={null}
         >
-          <p>Hình như đã có lỗi xảy ra khi thanh toán...
-            Vui lòng kiểm tra lại thông tin liên hệ, thông tin thẻ và thử lại.</p>
+          <div
+            style={{
+              background: "orange",
+              padding: "20px 0",
+              textAlign: "center",
+              width: "100%",
+              height: "65px",
+              position: "absolute",
+              top: 0,
+              left: 0,
+            }}
+          >
+
+          </div>
+          <span style={{position: "relative"}}>
+            <img style={{height: "100px", marginTop: "-70px", marginLeft: "90px"}} src="img/sad.png" alt="" />
+          </span>
+          <div style={{ padding: "20px", marginTop: "20px" }}>
+            <p>
+              Hình như đã có lỗi xảy ra khi thanh toán...
+              Vui lòng kiểm tra lại thông tin liên hệ, thông tin thẻ và thử lại.
+            </p>
+          </div>
         </Modal>
+
       </Layout>
 
 

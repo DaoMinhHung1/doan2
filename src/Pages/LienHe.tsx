@@ -167,6 +167,8 @@ const LienHe: React.FC = () => {
         visible={isModalVisible}
         onOk={handleModalClose}
         onCancel={handleModalClose}
+        width={350}
+        footer={null}
       >
         <p>Gửi liên hệ thành công</p>
         <p>Vui lòng kiên nhẫn đợi phản hồi từ chúng tôi, bạn nhé!</p>

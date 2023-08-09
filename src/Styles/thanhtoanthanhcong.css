@@ -28,7 +28,7 @@
     display: flex;
 }
 .layoutcard{
-    margin-left: 150px;
+    margin-left: 200px;
     height: 470px;
 }
 .QR{
@@ -42,7 +42,7 @@
     margin-left: 0px;
     position: relative;
     height: 380px;
-    width: 220px;
+    width: 185px;
     margin-left: 5px;
 }
 .btnimgtrai{
